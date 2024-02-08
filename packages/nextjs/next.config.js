@@ -14,6 +14,24 @@ const nextConfig = {
     config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/builders/0xdb253953AeD478908635De50CC49C35619bcE04E",
+        destination: "/builders/uklok.eth",
+        permanent: true,
+      },
+    ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
