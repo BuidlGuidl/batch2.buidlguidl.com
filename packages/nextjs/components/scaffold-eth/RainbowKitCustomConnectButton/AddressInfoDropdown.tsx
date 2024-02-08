@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NetworkOptions } from "./NetworkOptions";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Address, useDisconnect } from "wagmi";
@@ -12,10 +12,11 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/24/outline";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
-import { useOutsideClick } from "~~/hooks/scaffold-eth";
+import { useOutsideClick, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
 const allowedNetworks = getTargetNetworks();
+const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
 
 type AddressInfoDropdownProps = {
   address: Address;
@@ -42,11 +43,36 @@ export const AddressInfoDropdown = ({
   };
   useOutsideClick(dropdownRef, closeDropdown);
 
+  const [isCrew, setIsCrew] = useState(false);
+  const [isCheckedIn, setIsCheckedIn] = useState(false);
+  const { data: addressAllowed } = useScaffoldContractRead({
+    contractName: "BatchRegistry",
+    functionName: "allowList",
+    args: [address],
+  });
+
+  // TODO: only perform this request if the address is allowed.
+  const { data: addressCheckedIn } = useScaffoldContractRead({
+    contractName: "BatchRegistry",
+    functionName: "yourContractAddress",
+    args: [address],
+  });
+
+  useEffect(() => {
+    if (addressAllowed !== undefined) {
+      setIsCrew(addressAllowed);
+
+      if (addressAllowed && addressCheckedIn !== undefined) {
+        setIsCheckedIn(addressCheckedIn !== ADDRESS_ZERO);
+      }
+    }
+  }, [addressAllowed, addressCheckedIn]);
+
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
         <summary tabIndex={0} className="btn btn-secondary btn-sm pl-0 pr-2 shadow-md dropdown-toggle gap-0 !h-auto">
-          <BlockieAvatar address={address} size={30} ensImage={ensAvatar} />
+          <BlockieAvatar address={address} size={50} ensImage={ensAvatar} isCrew={isCrew} isCheckedIn={isCheckedIn} />
           <span className="ml-2 mr-1">{displayName}</span>
           <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
         </summary>
