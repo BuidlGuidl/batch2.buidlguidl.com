@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { blo } from "blo";
 import type { NextPage } from "next";
@@ -28,7 +27,8 @@ const StarcastellaPersonal: NextPage = () => {
     <>
       <div className="flex text-center bg-secondary p-10 w-full">
         <div className="flex-initial w-1/3 gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             className="rounded-full mx-auto"
             src={ensAvatar || blo(address as `0x${string}`)}
             width={avatarSize}
