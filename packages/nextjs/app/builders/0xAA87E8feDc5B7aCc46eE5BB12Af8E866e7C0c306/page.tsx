@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Address } from "../../../components/scaffold-eth/Address";
 import seyedProfile from "./images/seyed.jpg";
 import type { NextPage } from "next";
+import { Address } from "~~/components/scaffold-eth";
 
 const Builder: NextPage = () => {
   const address = "0xAA87E8feDc5B7aCc46eE5BB12Af8E866e7C0c306";
