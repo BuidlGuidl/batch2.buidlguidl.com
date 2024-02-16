@@ -42,7 +42,7 @@ const Home: NextPage = () => {
             </span>
           </p>
           <p className="text-lg flex gap-2 justify-center">
-            {allowed == undefined || contract == undefined ? (
+            {allowed === undefined || contract === undefined ? (
               <></>
             ) : !allowed ? (
               <span>You are not registered in this batch.</span>
