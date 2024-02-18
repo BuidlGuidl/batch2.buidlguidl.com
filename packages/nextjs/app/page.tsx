@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { BugAntIcon, MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 const Home: NextPage = () => {
@@ -32,9 +33,12 @@ const Home: NextPage = () => {
         <div className="px-5">
           <h1 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Batch 2</span>
+            <span className="block text-4xl font-bold">Batch2</span>
           </h1>
-          <p className="text-center text-lg">Get started by taking a look at your batch GitHub repository.</p>
+          <Image height={250} width={250} alt="BG-Batch2 logo" className="cursor-pointer mx-auto" src="/logo.svg" />
+          <p className="text-center text-lg">
+            Where we elevate expertise by fostering a culture of continuous learning and innovation.
+          </p>
           <p className="text-lg flex gap-2 mt-8 justify-center">
             <span className="font-bold">
               Checked in builders count:{" "}
@@ -51,7 +55,11 @@ const Home: NextPage = () => {
             ) : (
               <span>
                 Your contract address:{" "}
-                <Link href={`https://optimistic.etherscan.io/address/${contract}`} passHref className="link">
+                <Link
+                  href={`https://optimistic.etherscan.io/address/${contract}`}
+                  passHref
+                  className="link text-accent"
+                >
                   {contract}
                 </Link>
               </span>
@@ -61,26 +69,30 @@ const Home: NextPage = () => {
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
           <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+            <Link
+              href="/builders"
+              passHref
+              className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl hover:bg-secondary hover:shadow-md"
+            >
+              <UserIcon className="h-8 w-8 fill-secondary" />
+              <p>Check out this batch&apos;s builders!</p>
+            </Link>
+            <Link
+              href="/debug"
+              passHref
+              className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl hover:bg-secondary hover:shadow-md"
+            >
               <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contract
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+              <p>Tinker with your smart contract!</p>
+            </Link>
+            <Link
+              href="/blockexplorer"
+              passHref
+              className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl hover:bg-secondary hover:shadow-md"
+            >
               <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
+              <p>Explore your local transactions!</p>
+            </Link>
           </div>
         </div>
       </div>

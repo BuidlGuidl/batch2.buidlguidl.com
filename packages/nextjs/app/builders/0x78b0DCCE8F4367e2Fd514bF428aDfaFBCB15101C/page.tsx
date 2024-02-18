@@ -25,7 +25,7 @@ const StarcastellaPersonal: NextPage = () => {
 
   return (
     <>
-      <div className="flex text-center bg-secondary p-10 w-full">
+      <div className="flex text-center bg-base-300 p-10 w-full">
         <div className="flex-initial w-1/3 gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -38,11 +38,11 @@ const StarcastellaPersonal: NextPage = () => {
         </div>
         <div className="flex-auto gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
           <h1 className="text-4xl font-bold">starcastella.eth</h1>
-          <p className="text-lg">Hi, I&apos;m Wesly (alias: Starby).</p>
+          <p className="text-lg">Hi, I&apos;m Starby.</p>
           <p className="text-lg">An undergraduate informatics student / Trying out blockchain.</p>
           <p className="text-lg">
             Telegram:&nbsp;
-            <Link className="text-lg text-primary" href="https://t.me/KirbyoftheStar" passHref>
+            <Link className="text-lg text-accent" href="https://t.me/KirbyoftheStar" passHref>
               @KirbyoftheStar
             </Link>
           </p>
