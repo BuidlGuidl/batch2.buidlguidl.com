@@ -35,7 +35,13 @@ const Home: NextPage = () => {
             <span className="block text-2xl mb-2">Welcome to</span>
             <span className="block text-4xl font-bold">Batch2</span>
           </h1>
-          <Image height={250} width={250} alt="BG-Batch2 logo" className="cursor-pointer mx-auto" src="/logo.svg" />
+          <Image
+            height={250}
+            width={250}
+            alt="BG-Batch2 logo"
+            className="cursor-pointer mx-auto dark:invert"
+            src="/logo.svg"
+          />
           <p className="text-center text-lg">
             Where we elevate expertise by fostering a culture of continuous learning and innovation.
           </p>
