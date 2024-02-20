@@ -23,11 +23,8 @@ const Builders: NextPage = () => {
     fromBlock: 115767272n,
   });
   // create builders list from events
-  const builders: Array<any> = [];
-  checkedInEvents?.forEach(event => {
-    const builder = event.args.builder;
-    if (!builders.includes(builder)) builders.push(builder);
-  });
+  const buildersSet = new Set(checkedInEvents?.map(event => event.args.builder));
+  const builders = Array.from(buildersSet);
   // create builders components from builders list
   const buildersComponents = builders?.map((builder, index) => {
     return <Builder key={index} builder={builder} />;
