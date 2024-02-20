@@ -36,7 +36,9 @@ const Builders: NextPage = () => {
         <div className="text-center py-10">
           <h1>Buidlers List</h1>
         </div>
-        <div className="grid gap-2 grid-cols-3">{isLoading ? new Array(9).fill(<Builder />) : buildersComponents}</div>
+        <div className="flex flex-col space-y-4 md:grid md:gap-4 md:grid-cols-2 md:space-y-0 lg:grid-cols-3">
+          {isLoading ? new Array(9).fill(<Builder />) : buildersComponents}
+        </div>
       </div>
     </>
   );
